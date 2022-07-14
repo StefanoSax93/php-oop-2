@@ -4,7 +4,7 @@ require_once __DIR__ . '/Products.php';
 
 class Food extends Products {
 
-        protected $type='food';
+        protected $type='cibo';
         
         public function getType()
         {

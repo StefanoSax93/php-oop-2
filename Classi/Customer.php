@@ -10,9 +10,10 @@ class Customer {
     protected $registeredStatus = false;
     protected $discount = 0;
 
-    public function __construct($_userName, $_email, $_registeredStatus) {
+    public function __construct($_userName, $_email, $_password, $_registeredStatus) {
         $this->setUserName($_userName);
         $this->setEmail($_email);
+        $this->setPassword($_password);
         $this->setRegisteredStatus($_registeredStatus);
         $this->setDiscount();
     }
