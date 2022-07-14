@@ -4,7 +4,6 @@ class Products {
     
     protected $name;
     protected $price;
-    
 
     function __construct($_name,$_price) {
         $this->setName($_name);
