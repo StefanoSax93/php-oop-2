@@ -1,8 +1,9 @@
 <?php 
 
 require_once __DIR__ . '/Products.php';
+require_once __DIR__ . '/CreditCard.php';
 
-class Customer {
+class Customer extends CreditCard {
     
     protected $userName;
     protected $email;
@@ -10,12 +11,13 @@ class Customer {
     protected $registeredStatus = false;
     protected $discount = 0;
 
-    public function __construct($_userName, $_email, $_password, $_registeredStatus) {
+    public function __construct($_userName, $_email, $_password, $_registeredStatus,$_creditCardNumber, $_isValid) {
         $this->setUserName($_userName);
         $this->setEmail($_email);
         $this->setPassword($_password);
         $this->setRegisteredStatus($_registeredStatus);
         $this->setDiscount();
+        parent::__construct($_creditCardNumber, $_isValid);
     }
 
     public function getUserName()
