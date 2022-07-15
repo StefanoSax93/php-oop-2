@@ -1,26 +1,26 @@
 <?php 
 
-require_once __DIR__ . '/Products.php';
-require_once __DIR__ . '/CreditCard.php';
-require_once __DIR__ . "/Cart.php";
+require_once __DIR__ . "../../Traits/Cart.php";
+require_once __DIR__ . "../../Traits/PaymentHandler.php";
 
-class Customer extends CreditCard {
+
+class Customer {
     
+    use Cart, PaymentHandler;
+
     protected $userName;
     protected $email;
     private $password;
     protected $registeredStatus = false;
-    protected $discount = 0;
-    public Cart $cart;
 
-    public function __construct($_userName, $_email, $_password, $_registeredStatus,$_creditCardNumber, $_isValid) {
-        $this->setUserName($_userName);
+    public function __construct($_userName = null, $_email, $_password) {
+
+        if (isset($_userName)) {
+            $this->register($_userName);
+        }
+
         $this->setEmail($_email);
         $this->setPassword($_password);
-        $this->setRegisteredStatus($_registeredStatus);
-        $this->setDiscount();
-        $this->cart = new Cart();
-        parent::__construct($_creditCardNumber, $_isValid);
     }
 
     public function getUserName()
@@ -33,6 +33,25 @@ class Customer extends CreditCard {
         $this->userName = $userName;
 
         return $this;
+    }
+
+    
+    public function getRegisteredStatus()
+    {
+        return $this->registeredStatus;
+    }
+
+    public function setRegisteredStatus($registeredStatus)
+    {
+        $this->registeredStatus = $registeredStatus;
+
+        return $this;
+    }
+
+    public function register($_userName)
+    {
+        $this->setUserName($_userName);
+        $this->setRegisteredStatus(true);
     }
 
     public function getEmail()
@@ -54,26 +73,6 @@ class Customer extends CreditCard {
         return $this;
     }
 
-    public function setRegisteredStatus($registeredStatus)
-    {
-        $this->registeredStatus = $registeredStatus;
-
-        return $this;
-    }
-
-    public function getDiscount()
-    {
-        return $this->discount;
-    }
-
-    public function setDiscount()
-    {   
-        if($this->registeredStatus === true) {
-            $this->discount = 0.2;
-        }
-
-        return $this;
-    }
 }
 
 ?>

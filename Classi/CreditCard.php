@@ -1,57 +1,78 @@
 <?php
 
-class CreditCard {
+class CreditCard
+{
+    private $type;
+    private $number;
+    private $cvv;
+    private $expiration;
 
-    protected $creditCardNumber;
-    protected $isValid;
-    protected $message;
+    public static $MASTER_CARD = "mastercard";
+    public static $VISA = "visa";
+    public static $AMERICAN_EXPRESS= "american express";
+    public static $PAY_PAL= "pay pal";
+    public static $POSTE_PAY= "poste pay";
 
-    public function __construct($_creditCardNumber, $_isValid) {
-        $this->setCreditCardNumber($_creditCardNumber);
-        $this->setIsValid($_isValid);
-        $this->setMessage();
+    function __construct($_type, $_number, $_cvv, $_expiration)
+    {
+        $this->setType($_type);
+        $this->setNumber($_number);
+        $this->setCvv($_cvv);
+        $this->setExpiration($_expiration);
     }
 
-    public function getCreditCardNumber()
-    {
-        return $this->creditCardNumber;
+    public function getType()
+        {
+            return $this->type;
     }
 
-    public function setCreditCardNumber($creditCardNumber)
+    public function setType($type)
     {
-        $this->creditCardNumber = $creditCardNumber;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getIsValid()
+    public function getNumber()
     {
-        return $this->IsValid;
+        return $this->number;
     }
 
-    public function setisValid($isValid)
+    public function setNumber($number)
     {
-        $this->isValid = $isValid;
+        $this->number = $number;
 
         return $this;
     }
 
-    public function getMessage()
+    public function getCvv()
     {
-        return $this->message;
+        return $this->cvv;
     }
 
-    public function setMessage()
+    public function setCvv($cvv)
     {
-
-        if($this->isValid === true) {
-            $this->message = 'Puoi acquistare il prodotto';
-        }
-        else {
-            $this->message = 'Attenzione! La tua carta di credito è scaduta';
-        }
+        $this->cvv = $cvv;
 
         return $this;
+    }
+
+    public function getExpiration()
+    {
+        return $this->expiration;
+    }
+
+    public function setExpiration($expiration)
+    {
+        $this->expiration = $expiration;
+
+        return $this;
+    }
+
+    public function checkExpiration() {
+        $expiration = DateTime::createFromFormat("m/y", $this->expiration);
+        $now = new DateTime("now");
+
+        return $expiration > $now;
     }
 }
-?>

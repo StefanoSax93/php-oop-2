@@ -1,7 +1,11 @@
 <?php 
 
+require_once __DIR__ . "../../Traits/Validator.php";
+
 class Products {
     
+    use Validator;
+
     protected $name;
     protected $price;
 
@@ -17,6 +21,8 @@ class Products {
 
     public function setName($name)
     {
+        $this->validateStrings($name);
+        
         $this->name = $name;
 
         return $this;
