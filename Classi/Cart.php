@@ -4,9 +4,9 @@ class Cart
 {
     private $products = [];
 
-    public function addProduct($product)
+    public function addProduct(...$product)
     { 
-    $this->products[] = $product;
+        array_push($this->products, ...$product);
     }
 
     public function getProducts()
