@@ -2,11 +2,12 @@
 
 require_once __DIR__ . "../../Traits/Cart.php";
 require_once __DIR__ . "../../Traits/PaymentHandler.php";
+require_once __DIR__ . "../../Traits/Validator.php";
 
 
 class Customer {
     
-    use Cart, PaymentHandler;
+    use Cart, PaymentHandler , Validator;
 
     protected $userName;
     protected $email;
@@ -30,6 +31,8 @@ class Customer {
 
     public function setUserName($userName)
     {
+        $this->validateStrings($userName);
+
         $this->userName = $userName;
 
         return $this;

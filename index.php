@@ -15,7 +15,14 @@ $accessory2 = new Accessory('Collare', 5, 'plastica', 'nero');
 $toy1 = new Toy('Osso', 3 , 'gomma', 'rosso', '400g');
 $toy2 = new Toy('Pallina da tennis', 0.20, 'gomma', 'giallo', '20g');
 
-$customer1 = new Customer('John Marston', 'johnthekiller@gmail.com','thekiller');
+$customer1 = new Customer('', 'johnthekiller@gmail.com','thekiller');
+
+try {
+    $customer1->register('John Marston',null);
+} catch (Exception $e) {
+    echo "Impossibile registrare l'utente: dati non validi";
+}
+
 $customer2 = new Customer('Arthur Morgan', 'arthurmorgan@gmail.com','thesick:(');
 
 $customer1->addProduct($food2, $accessory2, $toy1);
