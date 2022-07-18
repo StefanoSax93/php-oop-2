@@ -17,11 +17,6 @@ $toy2 = new Toy('Pallina da tennis', 0.20, 'gomma', 'giallo', '20g');
 
 $customer1 = new Customer('', 'johnthekiller@gmail.com','thekiller');
 
-try {
-    $customer1->register('John Marston',null);
-} catch (Exception $e) {
-    echo "Impossibile registrare l'utente: dati non validi";
-}
 
 $customer2 = new Customer('Arthur Morgan', 'arthurmorgan@gmail.com','thesick:(');
 
@@ -53,6 +48,7 @@ var_dump($customer2);
 echo "<h1 class='text-uppercase'>carrello di: " . $customer1->getUserName() . "</h1>";
 var_dump($customer1->getProducts());
 var_dump($customer1->getCartTotal());
+var_dump($customer1->checkout(1));
 
 
 echo "<h1 class='text-uppercase'>carrello di: " . $customer2->getUserName() . "</h1>";

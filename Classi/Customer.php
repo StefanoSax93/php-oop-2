@@ -17,7 +17,11 @@ class Customer {
     public function __construct($_userName = null, $_email, $_password) {
 
         if (isset($_userName)) {
-            $this->register($_userName);
+            try{
+                $this->register($_userName);
+            } catch (Exception $e) {
+                echo "Impossibile registrare l'utente: dati non validi";
+            }           
         }
 
         $this->setEmail($_email);

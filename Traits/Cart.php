@@ -35,7 +35,7 @@ trait Cart
 
         $method = $this->getMethod($paymentIndex);
 
-        if($method->checkExpirationDate()) {
+        if($method->checkExpiration()) {
             echo "Pagamento riuscito per un totale di " . $totalWithDiscount . "€";
         } else {
             echo "Pagamento fallito perchè la carta è scaduta il " . $method->getExpiration();
