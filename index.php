@@ -53,6 +53,9 @@ var_dump($customer1->checkout(1));
 
 echo "<h1 class='text-uppercase'>carrello di: " . $customer2->getUserName() . "</h1>";
 var_dump($customer2->getProducts());
+var_dump($customer2->getCartTotal());
+var_dump($customer2->checkout(0));
+var_dump($customer2->checkout(1));
 
 
 

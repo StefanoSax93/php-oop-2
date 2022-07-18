@@ -10,7 +10,13 @@ class Products {
     protected $price;
 
     function __construct($_name,$_price) {
-        $this->setName($_name);
+        
+        try {
+            $this->setName($_name);
+        } catch (Exception $e) {
+            echo "Inserisci il nome del prodotto";
+        };
+
         $this->setPrice($_price);
     }
 
